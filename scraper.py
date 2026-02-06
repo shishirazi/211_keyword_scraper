@@ -475,8 +475,8 @@ def fetch_all_services(client: APIClient, location: str = "san diego", rate_limi
                 "new_unique": new_count,
             })
 
-            if new_count > 0:
-                tqdm.write(f"  '{keyword}': +{new_count} new (total: {len(all_results)}/{total_available})")
+            # Always log progress
+            print(f"[{i+1}/{len(keywords)}] '{keyword}': {count} results, +{new_count} new | Total: {len(all_results)}/{total_available} ({100*len(all_results)/total_available:.1f}%)", flush=True)
 
             if len(seen_ids) >= total_available:
                 tqdm.write(f"\n*** REACHED TARGET: {len(seen_ids)}/{total_available} services ***")
